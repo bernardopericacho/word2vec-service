@@ -1,11 +1,8 @@
 import os
-from gensim.models import KeyedVectors
+from gensim.models import keyedvectors
 
 # Load pretrained model (since intermediate data is not included, the model cannot be refined with additional data)
-vector_file = os.getenv("VECTOR_FILE",
-                        "https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz")
-binary = bool(os.getenv("BINARY_VECTOR_FILE", "true" if ".bin" in vector_file else "false").lower() == "true")
+vector_filepath = os.getenv("VECTOR_FILE", None)
+assert vector_filepath is not None, "Please provide a vector file to load"
 
-model = KeyedVectors.load_word2vec_format(
-    vector_file,
-    binary=binary)
+model = keyedvectors.Word2VecKeyedVectors.load(vector_filepath, mmap='r')

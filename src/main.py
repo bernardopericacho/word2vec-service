@@ -5,11 +5,6 @@ from word2vec import model
 
 app = Sanic()
 
-# model = {
-#     'dog': 'cat',
-#     'bacon': 'prosciutto'
-# }
-
 @app.route("/")
 async def test(request):
     return json({"hello": "world"})

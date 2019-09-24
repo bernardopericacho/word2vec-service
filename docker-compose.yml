@@ -1,7 +1,8 @@
-version: "3"
+version: "3.4"
 services:
   server:
     build:
       context: .
       dockerfile: ./Dockerfile
+      target: word2vec
     image: vampolo/word2vec-service
